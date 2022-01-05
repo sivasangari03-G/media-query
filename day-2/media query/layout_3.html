@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>layout_3 media query</title>
+		<style>
+			#container {
+				margin: auto;
+				box-sizing: border-box;
+				width: 90%;
+				display: grid;
+				grid-template-rows: 70px 150px 150px 150px;
+				grid-template-columns: 60% 40%;
+				grid-gap: 20px;
+				grid-template-areas:
+					"nav nav"
+					"left right1"
+					"left right2"
+					"left right3";
+			}
+			#nav {
+				background-color: yellow;
+				grid-area: nav;
+				font-size: 40px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			#left {
+				background-color: red;
+				grid-area: left;
+				font-size: 20px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			#right1 {
+				background-color: yellowgreen;
+				grid-area: right1;
+				font-size: 20px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			#right2 {
+				background-color: yellowgreen;
+				grid-area: right2;
+				font-size: 20px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			#right3 {
+				background-color: yellowgreen;
+				grid-area: right3;
+				font-size: 20px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			@media only screen and (min-width: 376px) and (max-width: 768px) {
+				#container {
+					grid-template-rows: 70px 200px 100px;
+					grid-template-columns: 30% 30% 30%;
+					grid-template-areas:
+						"nav nav nav"
+						"left left left"
+						"right1 right2 right3";
+				}
+			}
+            @media only screen and (min-width: 0px) and (max-width: 375px) {
+				#container {
+					grid-template-rows: 60px 150px 90px 90px 90px;
+					grid-template-columns: 80%;
+					grid-template-areas:
+						"nav nav nav"
+						"left left left"
+						"right1 right1 right1"
+                        "right2 right2 right2"
+                        "right3 right3 right3";
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div id="nav">Navigation</div>
+			<div id="left">LEFT BOX</div>
+			<div id="right1">RIGHT BOX 1</div>
+			<div id="right2">RIGHT BOX 2</div>
+			<div id="right3">RIGHT BOX 3</div>
+		</div>
+	</body>
+</html>
