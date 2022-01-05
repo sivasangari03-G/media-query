@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>layout 1 media query</title>
+		<style>
+			#container {
+				margin: 3%;
+			}
+			#nav {
+				background-color: yellow;
+				height: 70px;
+				box-sizing: border-box;
+				font-size: 30px;
+				padding: 10px;
+			}
+			#left {
+				background-color: red;
+				height: 500px;
+				float: left;
+				width: 47%;
+				margin-top: 2%;
+				box-sizing: border-box;
+				font-size: 30px;
+				padding: 10px;
+			}
+			#right {
+				background-color: greenyellow;
+				height: 500px;
+				float: right;
+				width: 47%;
+				margin-top: 2%;
+				box-sizing: border-box;
+				font-size: 30px;
+				padding: 10px;
+			}
+			@media only screen and (min-width: 0px) and (max-width: 375px) {
+				#left {
+					width: 100%;
+                    margin-top: 20px;
+				}
+				#right {
+					width: 100%;
+                    margin-top: 20px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div id="nav">Navigation</div>
+			<div id="left">LEFT BOX</div>
+			<div id="right">RIGHT BOX</div>
+		</div>
+	</body>
+</html>
