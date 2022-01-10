@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DOM Display-II</title>
+		<style>
+			#cointainer {
+				display: flex;
+				margin: 20px auto;
+				width: 90%;
+                text-align: center;
+			}
+			td {
+				font-size: 20px;
+				border: 1px solid black;
+				padding: 10px 20px;
+			}
+			#tablebox {
+				/* width: 70%; */
+				border: 1px solid red;
+				margin-right: 5%;
+			}
+			#forForm {
+				display: flex;
+				flex-direction: column;
+				border: 1px solid green;
+			}
+			button {
+				padding: 10px 20px;
+				margin: 10px;
+				font-size: 20px;
+			}
+			form {
+				display: flex;
+				flex-direction: column;
+			}
+			input {
+				padding: 10px 20px;
+				margin: 10px;
+				font-size: 20px;
+			}
+			select {
+				padding: 10px 20px;
+				margin: 10px;
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="cointainer">
+			<div id="tablebox">
+				<table>
+					<thead>
+						<tr>
+							<td>Employee Name</td>
+							<td>Employee Department</td>
+							<td>sales year 1</td>
+							<td>sales year 2</td>
+							<td>Average sales</td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+
+			<div id="forForm">
+				<form>
+					<input id="name" type="text" placeholder="enter name" />
+					<select id="sel">
+						<option value="">--</option>
+						<option value="Department 1">Department 1</option>
+						<option value="Department 2">Department 2</option>
+						<option value="Department 3">Department 3</option>
+					</select>
+					<input id="sales1" type="number" placeholder="sales yr 1" />
+					<input id="sales2" type="number" placeholder="sales yr 2" />
+					<input type="submit" />
+					<!-- <input id="ascending" type="submit" value="ascending order" />
+					<input id="decending" type="submit" value="descending order" /> -->
+				</form>
+				<button id="ascending">ascending order</button>
+				<button id="descending">descending order</button>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	document.querySelector("form").addEventListener("submit", myFunction);
+
+	var arr = [];
+	function myFunction(event) {
+		event.preventDefault();
+		var nam = document.querySelector("#name").value;
+		var sel = document.querySelector("#sel").value;
+		var sales1 = document.querySelector("#sales1").value;
+		var sales2 = document.querySelector("#sales2").value;
+		var tr = document.createElement("tr");
+		var td1 = document.createElement("td");
+		var td2 = document.createElement("td");
+		var td3 = document.createElement("td");
+		var td4 = document.createElement("td");
+		var td5 = document.createElement("td");
+		td1.textContent = nam;
+		td2.textContent = sel;
+		td3.textContent = sales1;
+		td4.textContent = sales2;
+		var avg = (Number(sales1) + Number(sales2)) / 2;
+		td5.textContent = avg;
+		tr.append(td1, td2, td3, td4, td5);
+		arr.push([nam, sel, sales1, sales2, avg]);
+		document.querySelector("tbody").append(tr);
+		nam = document.querySelector("#name").value = "";
+		sel = document.querySelector("#sel").value = "";
+		sales1 = document.querySelector("#sales1").value = "";
+		sales2 = document.querySelector("#sales2").value = "";
+	}
+
+	document.querySelector("#ascending").addEventListener("click", ascendingFunc);
+	function ascendingFunc() {
+		arr.sort(function (a, b) {
+			return a[4] - b[4];
+		});
+        console.log(arr);
+		// for (var i = 0; i < arr.length; i++) {
+		// 	console.log(arr[i][4]);
+		// }
+		var data = document.querySelectorAll("tr");
+
+        for (var k = 0; k < data.length-1;k++) {
+            //console.log(arr[k][4]);
+            data[k+1].innerHTML = `<td>${arr[k][0]}</td>
+            <td>${arr[k][1]}</td>
+            <td>${arr[k][2]}</td>
+            <td>${arr[k][3]}</td>
+            <td>${arr[k][4]}</td>`
+            // data[k+1].innerHTML = <td>arr[k][0]</td>;
+            // data[k+1].innerHTML = <td>arr[k][1]</td>;
+            // data[k+1].innerHTML = <td>arr[k][2]</td>;
+            // data[k+1].innerHTML = <td>arr[k][3]</td>;
+            // data[k+1].innerHTML = <td>arr[k][4]</td>;
+
+        }
+        // console.log(mainArr[k][0]);
+	}
+
+    document.querySelector("#descending").addEventListener("click", descendingFunc);
+    function descendingFunc() {
+		arr.sort(function (a, b) {
+			return b[4] - a[4];
+		});
+        //console.log(arr);
+		// for (var i = 0; i < arr.length; i++) {
+		// 	console.log(arr[i][4]);
+		// }
+		var data = document.querySelectorAll("tr");
+
+        for (var k = 0; k < data.length-1;k++) {
+            //console.log(arr[k][4]);
+            data[k+1].innerHTML = `<td>${arr[k][0]}</td>
+            <td>${arr[k][1]}</td>
+            <td>${arr[k][2]}</td>
+            <td>${arr[k][3]}</td>
+            <td>${arr[k][4]}</td>`
+        }
+        // console.log(mainArr[k][0]);
+	}
+</script>
